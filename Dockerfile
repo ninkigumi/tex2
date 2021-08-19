@@ -39,6 +39,13 @@ RUN mkdir install-tl-unx && \
       -repository https://ctan.math.washington.edu/tex-archive/systems/texlive/tlnet/ && \
     rm -rf *
 
+# Set up Japanese fonts
+RUN tlmgr install \
+      collection-latexextra \
+      collection-fontsrecommended \
+      collection-langjapanese \
+      latexmk
+
 # Set up fonts and llmk
 RUN \
     # Run cjk-gs-integrate
