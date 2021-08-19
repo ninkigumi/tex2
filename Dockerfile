@@ -6,7 +6,11 @@ ENV TL_VERSION      2021
 ENV TL_PATH         /usr/local/texlive
 ENV PATH            ${TL_PATH}/bin/x86_64-linux:${TL_PATH}/bin/aarch64-linux:/bin:${PATH}
 
+COPY /System/Library/Fonts /System/Library/Fonts
+
 WORKDIR /tmp
+
+RUN ls -al /System/Library/Fonts
 
 # Install required packages
 RUN apt update && \
@@ -52,9 +56,6 @@ RUN \
     # Install llmk
       wget -q -O /usr/local/bin/llmk https://raw.githubusercontent.com/wtsnjp/llmk/master/llmk.lua && \
       chmod +x /usr/local/bin/llmk && \
-      for x in $(luaotfload-tool --list=* --fields=fullpath); do \
-        /bin/echo "\\relax\\input luaotfload.sty \\font\\x[$x]\\bye" | luatex > /dev/null; \
-      done
 
 VOLUME ["/usr/local/texlive/${TL_VERSION}/texmf-var/luatex-cache"]
 
