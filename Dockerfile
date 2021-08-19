@@ -67,6 +67,18 @@ RUN luaotfload-tool -u -f
 #RUN fc-cache -r
 RUN kanji-config-updmap-sys status
 
+# Set default LANG=ja_JP.UTF-8. Without locale settings hiragino fonts cannot be found. Its file name is Japanese.
+RUN apt-get update && \
+    apt-get install -y locales && \
+    # Clean caches
+    apt-get autoremove -y && \
+    apt-get clean
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen && \
+    /usr/sbin/update-locale LANG=ja_JP.UTF-8
+ENV lang=ja_JP.UTF-8
+
 # Set up hiragino fonts link.
 WORKDIR /usr/share/fonts/SystemLibraryFonts
 RUN ln -s /usr/share/fonts/SystemLibraryFonts/"ヒラギノ明朝 ProN.ttc" /usr/local/texlive/texmf-local/fonts/opentype/cjk-gs-integrate/HiraginoSerif.ttc
