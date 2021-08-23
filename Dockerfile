@@ -50,7 +50,7 @@ RUN set -x && \
     rm -rf /usr/glibc-compat/bin && \
     rm -rf /usr/glibc-compat/sbin && \
     mkdir /tmp/install-tl-unx && \
-    curl -L http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet/install-tl-unx.tar.gz | \
+    curl -L https://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet/install-tl-unx.tar.gz | \
       tar zx -C /tmp/install-tl-unx --strip-components=1 && \
     { \
       echo "selected_scheme scheme-basic"; \
@@ -61,7 +61,7 @@ RUN set -x && \
      } | tee /tmp/install-tl-unx/texlive.profile && \
     /tmp/install-tl-unx/install-tl \
       --profile=/tmp/install-tl-unx/texlive.profile && \
-      -repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet/ && \
+      -repository https://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet/ && \
     tlmgr install \
       collection-latexextra \
       collection-fontsrecommended \
