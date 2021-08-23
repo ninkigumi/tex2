@@ -61,6 +61,7 @@ RUN set -x && \
      } | tee /tmp/install-tl-unx/texlive.profile && \
     /tmp/install-tl-unx/install-tl \
       --profile=/tmp/install-tl-unx/texlive.profile && \
+      -repository https://ctan.math.washington.edu/tex-archive/systems/texlive/tlnet/ && \
     tlmgr install \
       collection-latexextra \
       collection-fontsrecommended \
