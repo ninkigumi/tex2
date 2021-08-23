@@ -28,7 +28,7 @@ RUN set -x && \
       echo '/usr/lib'; \
       echo '/lib'; \
      } | tee /usr/glibc-compat/etc/files/ld.so.conf && \
-    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
     rm -rf /usr/glibc-compat/etc/rpc && \
     rm -rf /usr/glibc-compat/lib/gconv && \
     rm -rf /usr/glibc-compat/lib/getconf && \
