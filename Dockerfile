@@ -14,7 +14,7 @@ ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/$
 RUN set -x && \
     cd / && \
     apk update && \
-    apk add --no-cache --virtual .fetch-deps curl xz && \
+    apk add --no-cache --virtual .fetch-deps curl xz libc6-compat && \
     apk add --no-cache --virtual .glibc-bin-deps libgcc && \
     apk add --no-cache perl fontconfig-dev freetype-dev ghostscript && \
     curl -L ${GLIBC_URL_BASE}/${GLIBC_VER}/glibc-bin-${GLIBC_VER}-$(arch).tar.gz | \
