@@ -53,7 +53,7 @@ RUN set -x && \
     curl -L ftp://tug.org/historic/systems/texlive/${TEXLIVE_VER}/install-tl-unx.tar.gz | \
       tar zx -C /tmp/install-tl-unx --strip-components=1 && \
     { \
-      echo "selected_scheme scheme-full"; \
+      echo "selected_scheme scheme-basic"; \
       echo "tlpdbopt_install_docfiles 0"; \
       echo "tlpdbopt_install_srcfiles 0"; \
       echo "binary_$(arch)-linuxmusl 0"; \
