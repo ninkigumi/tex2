@@ -4,7 +4,7 @@
 
 FROM alpine:3.13
 
-ARG GLIBC_VER=2.34
+ARG GLIBC_VER=2.33
 ARG TEXLIVE_VER=2021
 
 ENV LANG=C.UTF-8
@@ -53,7 +53,7 @@ RUN set -x && \
     curl -L https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
       tar zx -C /tmp/install-tl-unx --strip-components=1 && \
     { \
-      echo "selected_scheme scheme-full"; \
+      echo "selected_scheme scheme-basic"; \
       echo "tlpdbopt_install_docfiles 0"; \
       echo "tlpdbopt_install_srcfiles 0"; \
       echo "binary_$(arch)-linuxmusl 0"; \
