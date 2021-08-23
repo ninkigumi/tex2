@@ -4,11 +4,11 @@
 
 FROM alpine:3.13
 
-ARG GLIBC_VER=2.33
+ARG GLIBC_VER=2.34
 ARG TEXLIVE_VER=2021
 
 ENV LANG=C.UTF-8
-ENV GLIBC_URL_BASE=https://github.com/pman0214/docker-glibc-builder/releases/download
+ENV GLIBC_URL_BASE=https://github.com/sgerrand/docker-glibc-builder/releases/download
 ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/${TEXLIVE_VER}/bin/aarch64-linux:$PATH
 
 RUN set -x && \
