@@ -11,6 +11,8 @@ ENV LANG=C.UTF-8
 ENV GLIBC_URL_BASE=https://github.com/sgerrand/docker-glibc-builder/releases/download
 ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/${TEXLIVE_VER}/bin/aarch64-linux:$PATH
 
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib64
+
 RUN set -x && \
     cd / && \
     apk update && \
