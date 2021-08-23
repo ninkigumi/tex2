@@ -11,8 +11,6 @@ ENV LANG=C.UTF-8
 ENV GLIBC_URL_BASE=https://github.com/pman0214/docker-glibc-builder/releases/download
 ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/${TEXLIVE_VER}/bin/aarch64-linux:$PATH
 
-COPY files /tmp/files
-
 RUN set -x && \
     cd / && \
     apk update && \
@@ -22,8 +20,15 @@ RUN set -x && \
     curl -L ${GLIBC_URL_BASE}/${GLIBC_VER}/glibc-bin-${GLIBC_VER}-$(arch).tar.gz | \
       tar zx -C / && \
     mkdir -p /lib64 /usr/glibc-compat/lib/locale /usr/glibc-compat/lib64 && \
-    cp /tmp/files/ld.so.conf /usr/glibc-compat/etc/ && \
-    cp /tmp/files/nsswitch.conf /etc/ && \
+    #cp /tmp/files/ld.so.conf /usr/glibc-compat/etc/ && \
+    #cp /tmp/files/nsswitch.conf /etc/ && \
+    { \
+      echo '/usr/local/lib'; \
+      echo '/usr/glibc-compat/lib'; \
+      echo '/usr/lib'; \
+      echo '/lib'; \
+     } | tee /usr/glibc-compat/etc/files/ld.so.conf && \
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf
     rm -rf /usr/glibc-compat/etc/rpc && \
     rm -rf /usr/glibc-compat/lib/gconv && \
     rm -rf /usr/glibc-compat/lib/getconf && \
